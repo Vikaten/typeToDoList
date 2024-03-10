@@ -9,6 +9,11 @@ const checkbox = document.querySelectorAll('.checkbox');
 const deleteAll = document.querySelector('#deleteAll');
 const clock = document.querySelector('#clock');
 let toDoList: toDo[] = [];
+interface LocalStorage {
+  setItem(key: string, value: string): void;
+  getItem(key: string): string;
+}
+const localStorage = window.localStorage as LocalStorage;
 
 if (localStorage.getItem('todo')) {
     toDoList = JSON.parse(localStorage.getItem('todo'));
