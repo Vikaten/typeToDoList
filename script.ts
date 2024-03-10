@@ -1,3 +1,5 @@
+import {toDo} from './interface.ts'
+
 const heading = document.querySelector('#top');
 const space = document.querySelector('#space') as HTMLInputElement;
 const noticeButton = document.querySelector('#noticeButton') as HTMLButtonElement;
@@ -7,10 +9,6 @@ const checkbox = document.querySelectorAll('.checkbox');
 const deleteAll = document.querySelector('#deleteAll');
 const clock = document.querySelector('#clock');
 let toDoList: toDo[] = [];
-interface toDo {
-  doing: string,
-  checkbox: boolean
-};
 
 if (localStorage.getItem('todo')) {
     toDoList = JSON.parse(localStorage.getItem('todo'));
