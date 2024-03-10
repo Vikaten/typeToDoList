@@ -1,12 +1,16 @@
 const heading = document.querySelector('#top');
-const space = document.querySelector('#space');
-const noticeButton = document.querySelector('#noticeButton');
+const space = document.querySelector('#space') as HTMLInputElement;
+const noticeButton = document.querySelector('#noticeButton') as HTMLButtonElement;
 const ul = document.querySelector('ul');
 const container = document.querySelector('#container');
 const checkbox = document.querySelectorAll('.checkbox');
 const deleteAll = document.querySelector('#deleteAll');
 const clock = document.querySelector('#clock');
-let toDoList = [];
+let toDoList: toDo[] = [];
+interface toDo {
+  doing: string,
+  checkbox: boolean
+};
 
 if (localStorage.getItem('todo')) {
     toDoList = JSON.parse(localStorage.getItem('todo'));
