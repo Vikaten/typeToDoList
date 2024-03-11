@@ -61,7 +61,7 @@ toDoList.forEach((el, index) => {
   if ('item' + toDoList.indexOf(el) == targetTag) {
     el.checkbox = !el.checkbox;
     localStorage.setItem('todo', JSON.stringify(toDoList));
-  }
+ 
   })
 })
 
