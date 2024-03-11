@@ -3,7 +3,7 @@ import {toDo} from './interface.ts'
 const heading = document.querySelector('#top');
 const space = document.querySelector('#space') as HTMLInputElement;
 const noticeButton = document.querySelector('#noticeButton') as HTMLButtonElement;
-const ul = document.querySelector('ul');
+const ul = document.querySelector('ul') as HTMLElement;
 const container = document.querySelector('#container');
 const checkbox = document.querySelectorAll('.checkbox');
 const deleteAll = document.querySelector('#deleteAll');
@@ -61,7 +61,7 @@ toDoList.forEach((el, index) => {
   if ('item' + toDoList.indexOf(el) == targetTag) {
     el.checkbox = !el.checkbox;
     localStorage.setItem('todo', JSON.stringify(toDoList));
- 
+  } 
   })
 })
 
@@ -69,12 +69,17 @@ toDoList.forEach((el, index) => {
 function deleteBlock() {
   const deleteButton = document.querySelectorAll('.trash');
   deleteButton.forEach(el => {
-    el.addEventListener('click', function (e) {
-    let liItem = e.target.closest('.li_item');
-    const indexToRemove = parseInt(liItem.dataset.index);
-    toDoList.splice(indexToRemove, 1);
-    liItem.remove()
-     localStorage.setItem('todo', JSON.stringify(toDoList))
+    el.addEventListener('click', function (e: Event) {
+    let liItem: HTMLElement | null = (e.target as HTMLElement).closest('.li_item');
+      if (liItem !== null && liItem !== undefined) {
+        let liItemIndex = liItem.dataset.index;
+        if (liItemIndex !== undefined) {
+          const indexToRemove = parseInt(liItem.dataset.index);
+          toDoList.splice(indexToRemove, 1);
+          liItem.remove()
+        localStorage.setItem('todo', JSON.stringify(toDoList))
+        }
+      }
     })
   })
 }
