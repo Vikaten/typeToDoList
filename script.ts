@@ -70,9 +70,9 @@ function deleteBlock() {
   const deleteButton = document.querySelectorAll('.trash');
   deleteButton.forEach(el => {
     el.addEventListener('click', function (e: Event) {
-    let liItem: HTMLElement | null = (e.target as HTMLElement).closest('.li_item');
-      if (liItem !== null && liItem !== undefined) {
-        let liItemIndex = liItem.dataset.index;
+    const liItem: HTMLElement | null = (e.target as HTMLElement).closest('.li_item');
+      if (liItem != undefined) {
+        const liItemIndex = liItem.dataset.index;
         if (liItemIndex !== undefined) {
           const indexToRemove = parseInt(liItemIndex);
           toDoList.splice(indexToRemove, 1);
