@@ -3,7 +3,7 @@ import {toDo} from './interface.ts'
 const heading = document.querySelector('#top');
 const space = document.querySelector('#space') as HTMLInputElement;
 const noticeButton = document.querySelector('#noticeButton') as HTMLButtonElement;
-const ul = document.querySelector('ul');
+const ul = document.querySelector('ul') as HTMLElement;
 const container = document.querySelector('#container') as HTMLElement;
 const checkbox = document.querySelectorAll('.checkbox');
 const deleteAll = document.querySelector('#deleteAll');
