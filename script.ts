@@ -8,7 +8,7 @@ const ul = document.querySelector('ul') as HTMLElement;
 const container = document.querySelector('#container') as HTMLElement;
 const checkbox = document.querySelectorAll('.checkbox');
 const deleteAll = document.querySelector('#deleteAll') as HTMLButtonElement;
-const clock = document.querySelector('#clock');
+const clock = document.querySelector('#clock') as HTMLDivElement;
 let toDoList: toDo[] = [];
 interface LocalStorage {
   setItem(key: string, value: string): void;
@@ -105,20 +105,23 @@ deleteAll.addEventListener('click', function (e) {
 window.onload = function() {
   window.setInterval(function() {
     let date = new Date()
-    let hours = date.getHours();
-    let minutes = date.getMinutes();
-    let seconds = date.getSeconds();
+    let hours: number = date.getHours();
+    let minutes: number = date.getMinutes();
+    let seconds: number = date.getSeconds();
+    let hoursTime: string = '';
+    let minutesTime: string = '';
+    let secondsTime: string = '';
 
     if (hours < 10) {
-      hours = '0' + hours;
+      hoursTime = '0' + hours;
     }
 
     if (minutes < 10) {
-      minutes = '0' + minutes;
+      minutesTime = '0' + minutes;
     }
 
     if (seconds < 10) {
-      seconds = '0' + seconds;
+      secondsTime = '0' + seconds;
     }
 
     let time = hours +':'+ minutes + ':' + seconds;
