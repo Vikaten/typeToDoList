@@ -1,4 +1,5 @@
 import {toDo} from './interface.ts'
+import {todo} from './constants.ts'
 
 const heading = document.querySelector('#top');
 const space = document.querySelector('#space') as HTMLInputElement;
@@ -15,8 +16,8 @@ interface LocalStorage {
 }
 const localStorage = window.localStorage as LocalStorage;
 
-if (localStorage.getItem('todo')) {
-    toDoList = JSON.parse(localStorage.getItem('todo'));
+if (localStorage.getItem(todo)) {
+    toDoList = JSON.parse(localStorage.getItem(todo));
     createNewDoing();
 } 
 
@@ -35,7 +36,7 @@ noticeButton.addEventListener('click', function () {
     else {
       alert('Ваша строка не должна быть пустая. Заполните ее, пожалуйста!');
     }
-  localStorage.setItem('todo', JSON.stringify(toDoList));
+  localStorage.setItem(todo, JSON.stringify(toDoList));
 });
 
 // новая строка списка
@@ -65,7 +66,7 @@ let targetTag = e.target.getAttribute('id');
 toDoList.forEach((el, index) => {
   if ('item' + toDoList.indexOf(el) == targetTag) {
     el.checkbox = !el.checkbox;
-    localStorage.setItem('todo', JSON.stringify(toDoList));
+    localStorage.setItem(todo, JSON.stringify(toDoList));
   }
   })
 })
@@ -79,7 +80,7 @@ function deleteBlock() {
     const indexToRemove = parseInt(liItem.dataset.index);
     toDoList.splice(indexToRemove, 1);
     liItem.remove()
-     localStorage.setItem('todo', JSON.stringify(toDoList))
+     localStorage.setItem(todo, JSON.stringify(toDoList))
     })
   })
 }
@@ -92,7 +93,7 @@ deleteAll.addEventListener('click', function (e) {
     el.remove();
   })
   toDoList = [];
-  localStorage.setItem('todo', JSON.stringify(toDoList));
+  localStorage.setItem(todo, JSON.stringify(toDoList));
 })
 
 // создание часов
