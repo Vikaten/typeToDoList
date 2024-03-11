@@ -68,19 +68,24 @@ toDoList.forEach((el, index) => {
     el.checkbox = !el.checkbox;
     localStorage.setItem(todo, JSON.stringify(toDoList));
   }
-  })
+ })
 })
 
 // удаление блока
 function deleteBlock() {
   const deleteButton = document.querySelectorAll('.trash');
   deleteButton.forEach(el => {
-    el.addEventListener('click', function (e) {
-    let liItem = e.target.closest('.li_item');
-    const indexToRemove = parseInt(liItem.dataset.index);
-    toDoList.splice(indexToRemove, 1);
-    liItem.remove()
-     localStorage.setItem(todo, JSON.stringify(toDoList))
+    el.addEventListener('click', function (e: Event) {
+    const liItem: HTMLElement | null = (e.target as HTMLElement).closest('.li_item');
+      if (liItem != undefined) {
+        const liItemIndex = liItem.dataset.index;
+        if (liItemIndex !== undefined) {
+          const indexToRemove = parseInt(liItemIndex);
+          toDoList.splice(indexToRemove, 1);
+          liItem.remove()
+        localStorage.setItem('todo', JSON.stringify(toDoList))
+        }
+      }
     })
   })
 }
