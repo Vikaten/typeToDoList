@@ -74,7 +74,7 @@ function deleteBlock() {
       if (liItem !== null && liItem !== undefined) {
         let liItemIndex = liItem.dataset.index;
         if (liItemIndex !== undefined) {
-          const indexToRemove = parseInt(liItem.dataset.index);
+          const indexToRemove = parseInt(liItemIndex);
           toDoList.splice(indexToRemove, 1);
           liItem.remove()
         localStorage.setItem('todo', JSON.stringify(toDoList))
