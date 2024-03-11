@@ -7,7 +7,7 @@ const noticeButton = document.querySelector('#noticeButton') as HTMLButtonElemen
 const ul = document.querySelector('ul') as HTMLElement;
 const container = document.querySelector('#container') as HTMLElement;
 const checkbox = document.querySelectorAll('.checkbox');
-const deleteAll = document.querySelector('#deleteAll');
+const deleteAll = document.querySelector('#deleteAll') as HTMLButtonElement;
 const clock = document.querySelector('#clock');
 let toDoList: toDo[] = [];
 interface LocalStorage {
