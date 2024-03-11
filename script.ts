@@ -4,7 +4,7 @@ const heading = document.querySelector('#top');
 const space = document.querySelector('#space') as HTMLInputElement;
 const noticeButton = document.querySelector('#noticeButton') as HTMLButtonElement;
 const ul = document.querySelector('ul');
-const container = document.querySelector('#container');
+const container = document.querySelector('#container') as HTMLElement;
 const checkbox = document.querySelectorAll('.checkbox');
 const deleteAll = document.querySelector('#deleteAll');
 const clock = document.querySelector('#clock');
@@ -55,8 +55,8 @@ function createNewDoing() {
 }
 
 // сохранение состояния checkbox 
-container.addEventListener('change', function (e) {
-let targetTag = e.target.getAttribute('id');
+container.addEventListener('change', function (e: Event) {
+let targetTag = (e.target as HTMLElement).getAttribute('id');
 toDoList.forEach((el, index) => {
   if ('item' + toDoList.indexOf(el) == targetTag) {
     el.checkbox = !el.checkbox;
