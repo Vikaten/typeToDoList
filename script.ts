@@ -1,5 +1,5 @@
-import {toDo} from './interface.ts'
-import {todo} from './constants.ts'
+import {toDo} from './interface.js'
+import {todo} from './constants.js'
 
 const heading = document.querySelector('#top');
 const space = document.querySelector('#space') as HTMLInputElement;
@@ -76,14 +76,16 @@ function deleteBlock() {
   const deleteButton = document.querySelectorAll('.trash');
   deleteButton.forEach(el => {
     el.addEventListener('click', function (e: Event) {
+      const liItemsAll = document.querySelectorAll('.li_item');
+      var liItemIndex = Array.from(liItemsAll).indexOf(e.target as HTMLElement);
     const liItem: HTMLElement | null = (e.target as HTMLElement).closest('.li_item');
       if (liItem != undefined) {
-        const liItemIndex = liItem.dataset.index;
+        // const liItemIndex = liItemIndex.indexOf(e.target);
         if (liItemIndex !== undefined) {
-          const indexToRemove = parseInt(liItemIndex);
-          toDoList.splice(indexToRemove, 1);
+          // const indexToRemove = parseInt(liItemIndex);
+          toDoList.splice(liItemIndex, 1);
           liItem.remove()
-        localStorage.setItem('todo', JSON.stringify(toDoList))
+          localStorage.setItem(todo, JSON.stringify(toDoList))
         }
       }
     })
