@@ -1,24 +1,21 @@
-"use strict";
-// Object.defineProperty(exports, "__esModule", { value: true });
-// var constants_js_1 = require("./constants.js");
-import {todo} from './constants.js'
-var heading = document.querySelector('#top');
-var space = document.querySelector('#space');
-var noticeButton = document.querySelector('#noticeButton');
-var ul = document.querySelector('ul');
-var container = document.querySelector('#container');
-var checkbox = document.querySelectorAll('.checkbox');
-var deleteAll = document.querySelector('#deleteAll');
-var clock = document.querySelector('#clock');
-var toDoList = [];
-var localStorage = window.localStorage;
-if (localStorage.getItem(todo)) {
+import { todo } from './constants.js';
+const heading = document.querySelector('#top');
+const space = document.querySelector('#space');
+const noticeButton = document.querySelector('#noticeButton');
+const ul = document.querySelector('ul');
+const container = document.querySelector('#container');
+const checkbox = document.querySelectorAll('.checkbox');
+const deleteAll = document.querySelector('#deleteAll');
+const clock = document.querySelector('#clock');
+let toDoList = [];
+const localStorage = window.localStorage;
+if (localStorage.getItem(todo)) { //вау
     toDoList = JSON.parse(localStorage.getItem(todo));
     createNewDoing();
 }
 // проверка ну пустую строку в графе
 noticeButton.addEventListener('click', function () {
-    var toDo = {
+    let toDo = {
         doing: space.value,
         checkbox: false,
         delete: false
@@ -35,17 +32,28 @@ noticeButton.addEventListener('click', function () {
 });
 // новая строка списка
 function createNewDoing() {
-    var pr = "";
-    toDoList.forEach(function (el, index) {
-        pr += " \n      <li id = 'item".concat(index, "' class = 'li_item'> \n        <div class = 'checkTrash'>\n          <div class = 'checkText'> \n              <input type = 'checkbox' class = 'checkbox'  id = 'item").concat(index, "' ").concat(el.checkbox ? 'checked' : '', "> \n              <label for = 'item").concat(index, "' class = 'label'>").concat(el.doing, "</label> \n          </div> \n          <div>\n            <img src = 'free-icon-garbage-158725.png' class = 'trash'> \n          </div>\n        </div> \n        </li>");
+    let pr = "";
+    toDoList.forEach((el, index) => {
+        pr += ` 
+      <li id = 'item${index}' class = 'li_item'> 
+        <div class = 'checkTrash'>
+          <div class = 'checkText'> 
+              <input type = 'checkbox' class = 'checkbox'  id = 'item${index}' ${el.checkbox ? 'checked' : ''}> 
+              <label for = 'item${index}' class = 'label'>${el.doing}</label> 
+          </div> 
+          <div>
+            <img src = 'free-icon-garbage-158725.png' class = 'trash'> 
+          </div>
+        </div> 
+        </li>`;
         space.value = "";
         ul.innerHTML = pr;
     });
 }
 // сохранение состояния checkbox 
 container.addEventListener('change', function (e) {
-    var targetTag = e.target.getAttribute('id');
-    toDoList.forEach(function (el, index) {
+    let targetTag = e.target.getAttribute('id');
+    toDoList.forEach((el, index) => {
         if ('item' + toDoList.indexOf(el) == targetTag) {
             el.checkbox = !el.checkbox;
             localStorage.setItem(todo, JSON.stringify(toDoList));
@@ -54,12 +62,12 @@ container.addEventListener('change', function (e) {
 });
 // удаление блока
 function deleteBlock() {
-    var deleteButton = document.querySelectorAll('.trash');
-    deleteButton.forEach(function (el) {
+    const deleteButton = document.querySelectorAll('.trash');
+    deleteButton.forEach(el => {
         el.addEventListener('click', function (e) {
-            var liItemsAll = document.querySelectorAll('.li_item');
+            const liItemsAll = document.querySelectorAll('.li_item');
             var liItemIndex = Array.from(liItemsAll).indexOf(e.target);
-            var liItem = e.target.closest('.li_item');
+            const liItem = e.target.closest('.li_item');
             if (liItem != undefined) {
                 // const liItemIndex = liItemIndex.indexOf(e.target);
                 if (liItemIndex !== undefined) {
@@ -75,23 +83,23 @@ function deleteBlock() {
 deleteBlock();
 // создание кнопки "удалить все"
 deleteAll.addEventListener('click', function (e) {
-    var liItem = document.querySelectorAll('.li_item');
-    liItem.forEach(function (el) {
+    let liItem = document.querySelectorAll('.li_item');
+    liItem.forEach(el => {
         el.remove();
     });
     toDoList = [];
-    localStorage.setItem(constants_js_1.todo, JSON.stringify(toDoList));
+    localStorage.setItem(todo, JSON.stringify(toDoList));
 });
 // создание часов
 window.onload = function () {
     window.setInterval(function () {
-        var date = new Date();
-        var hours = date.getHours();
-        var minutes = date.getMinutes();
-        var seconds = date.getSeconds();
-        var hoursTime = '';
-        var minutesTime = '';
-        var secondsTime = '';
+        let date = new Date();
+        let hours = date.getHours();
+        let minutes = date.getMinutes();
+        let seconds = date.getSeconds();
+        let hoursTime = '';
+        let minutesTime = '';
+        let secondsTime = '';
         if (hours < 10) {
             hoursTime = '0' + hours;
         }
@@ -101,7 +109,7 @@ window.onload = function () {
         if (seconds < 10) {
             secondsTime = '0' + seconds;
         }
-        var time = hours + ':' + minutes + ':' + seconds;
+        let time = hours + ':' + minutes + ':' + seconds;
         clock.innerText = time;
     }, 1000);
 };

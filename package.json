@@ -1,0 +1,10 @@
+{
+    "name": "typetodolist",
+    "main": "script.ts",
+    "scripts": {
+        "build": "tsc --project tsconfig.json"
+    },
+    "dependencies": {
+        "@babel/plugin-transform-modules-commonjs": "^7.23.3"
+    }
+}

@@ -16,7 +16,7 @@ interface LocalStorage {
 }
 const localStorage = window.localStorage as LocalStorage;
 
-if (localStorage.getItem(todo)) {
+if (localStorage.getItem(todo)) { //вау
     toDoList = JSON.parse(localStorage.getItem(todo));
     createNewDoing();
 } 
